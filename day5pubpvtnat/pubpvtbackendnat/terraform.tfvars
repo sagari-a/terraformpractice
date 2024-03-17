@@ -1,0 +1,5 @@
+ami_id = "ami-013168dc3850ef002"
+instance_type = "t2.micro"
+key_name = "devops"
+keyname = "diffkey"
+availability_zone = "ap-south-1b"
