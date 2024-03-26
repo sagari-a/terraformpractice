@@ -1,16 +1,33 @@
-node {
-    stage('checkout') { 
-        git branch: 'main', url: 'https://github.com/sagari-a/terraformpractice.git'
-    }
-    stage('init') {
-        dir('day2instance_bucket'){
-        sh "terraform init"
-       }
-    }
-    stage('action') {
-        dir('day2instance_bucket'){
-        echo "Terraform action is --> ${action}"
-        sh "terraform ${action} -auto-approve"
-       }
+pipeline {
+    agent any
+    stages {
+        stage('checkout') {
+            steps {
+                git branch: 'main', url: 'https://github.com/sagari-a/terraformpractice.git'
+            }
+        }
+         stage('init') {
+            steps {
+                dir('day2instance_bucket'){
+                sh "terraform init"
+                }
+            }
+        }
+        stage('plan') {
+            steps {
+                dir('day2instance_bucket'){
+                sh "terraform plan"
+                }
+                    
+            }
+        }
+        stage('action') {
+            steps {
+                dir('day2instance_bucket'){
+                echo "Terraform action is --> ${action}"
+                sh "terraform ${action} -auto-approve"
+                }
+            }    
+        }
     }
 }
