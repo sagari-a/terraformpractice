@@ -17,8 +17,7 @@ pipeline {
             steps {
                 dir('day2instance_bucket'){
                 sh "terraform plan"
-                }
-                    
+                }      
             }
         }
         stage('action') {
