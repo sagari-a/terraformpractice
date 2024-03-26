@@ -13,13 +13,6 @@ pipeline {
                 }
             }
         }
-        stage('plan') {
-            steps {
-                dir('day2instance_bucket'){
-                sh "terraform plan"
-                }      
-            }
-        }
         stage('action') {
             steps {
                 dir('day2instance_bucket'){
